@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/profile', 'ProfileController@index')->name('user_profile');
 Route::PUT('/profile/avatar', 'ProfileController@updateAvatar')->name('update_avatar');
+Route::PUT('/profile/info', 'ProfileController@updateInfo')->name('update_info');
+Route::PUT('/profile/password', 'ProfileController@updatePassword')->name('update_password');

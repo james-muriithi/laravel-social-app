@@ -7,6 +7,29 @@
                     <div class="col mb-3">
                         <div class="card">
                             <div class="card-body">
+                                @if($message = Session::get('success'))
+                                    <div class="col-12">
+                                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                            <p>{{ $message }}</p>
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                @endif
+
+                                    @if ($errors->any())
+                                        <div class="row">
+                                            <div class="alert alert-danger mb-3 col-11">
+                                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                                <ul>
+                                                    @foreach ($errors->all() as $error)
+                                                        <li>{{ $error }}</li>
+                                                    @endforeach
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    @endif
                                 <div class="e-profile">
                                     <div class="row">
                                         <div class="col-12 col-sm-auto mb-3">
@@ -41,15 +64,17 @@
                                     </div>
                                     <ul class="nav nav-tabs" role="tablist">
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link active" id="info-tab" data-toggle="tab" href="#personalInfo" role="tab" aria-controls="personalInfo" aria-selected="true">Personal Details</a>
+                                            <a class="nav-link active" id="info-tab" data-toggle="tab" href="#personalInfo" role="tab" aria-controls="personalInfo" aria-selected="true">Personal Details</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" class="nav-link" id="password-tab" data-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
+                                            <a class="nav-link" id="password-tab" data-toggle="tab" href="#changePassword" role="tab" aria-controls="changePassword" aria-selected="false">Change Password</a>
                                         </li>
                                     </ul>
                                     <div class="tab-content pt-3">
                                         <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="info-tab" id="personalInfo">
-                                            <form class="form" novalidate="">
+                                            <form class="form" action="{{route('update_info')}}" method="POST">
+                                                @csrf
+                                                @method('PUT')
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="row">
@@ -65,7 +90,7 @@
                                                             <div class="col">
                                                                 <div class="form-group">
                                                                     <label>Email</label>
-                                                                    <input class="form-control" type="text" placeholder="user@example.com" value="{{Auth::user()->email}}">
+                                                                    <input class="form-control" type="email" placeholder="user@example.com" name="email" value="{{Auth::user()->email}}">
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -83,12 +108,14 @@
 
 
                                         <div class="tab-pane fade" id="changePassword" role="tabpanel" aria-labelledby="password-tab">
-                                            <form class="form" novalidate="">
+                                            <form class="form" action="{{route('update_password')}}" method="POST">
+                                                @csrf
+                                                @method('PUT')
                                                 <div class="row">
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <label>Current Password</label>
-                                                            <input class="form-control" type="password" placeholder="Provide Current Password">
+                                                            <input class="form-control" name="old_password" type="password" placeholder="Provide Current Password">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -96,7 +123,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <label>New Password</label>
-                                                            <input class="form-control" type="password" placeholder="Enter New Password">
+                                                            <input class="form-control" name="password" type="password" placeholder="Enter New Password">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -104,7 +131,7 @@
                                                     <div class="col">
                                                         <div class="form-group">
                                                             <label>Confirm <span class="d-none d-xl-inline">Confirm Password</span></label>
-                                                            <input class="form-control" type="password" placeholder="Confirm New Password"></div>
+                                                            <input class="form-control" name="password_confirmation" type="password" placeholder="Confirm New Password"></div>
                                                     </div>
                                                 </div>
 

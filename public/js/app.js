@@ -37269,6 +37269,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 $('.avatar-form').on('change', function () {
   this.submit();
 });
+$(".alert").delay(4000).slideUp(200, function () {
+  $(this).alert('close');
+});
 
 /***/ }),
 
