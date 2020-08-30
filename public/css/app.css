@@ -10922,8 +10922,21 @@ body {
   font-weight: 400;
 }
 
+.username {
+  color: #8899a6;
+  font-size: 13px;
+}
+
+a span:first-child:hover {
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
 .time {
-  font-size: 9px !important;
+  font-size: 10px !important;
 }
 
 .socials i {
@@ -10946,6 +10959,10 @@ body {
 .share-input {
   outline: 0 !important;
   box-shadow: none;
+}
+
+.publish-options div {
+  cursor: pointer;
 }
 
 .publish {
@@ -10972,6 +10989,12 @@ textarea {
   .publish.btn {
     padding-left: 20px !important;
     padding-right: 20px !important;
+  }
+}
+
+@media screen and (max-width: 440px) {
+  .username {
+    display: block;
   }
 }
 

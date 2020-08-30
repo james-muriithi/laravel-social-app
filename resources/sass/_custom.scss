@@ -14,9 +14,21 @@ body {
     overflow-wrap: break-word;
     font-weight: 400;
 }
+.username{
+    color: rgb(136,153,166);
+    font-size: 13px;
+}
+
+a span:first-child:hover{
+    text-decoration: underline;
+}
+
+a:hover{
+    text-decoration: none!important;
+}
 
 .time {
-    font-size: 9px !important
+    font-size: 10px !important
 }
 
 .socials i {
@@ -38,6 +50,10 @@ body {
 .share-input {
     outline: 0 !important;
     box-shadow: none
+}
+
+.publish-options div{
+    cursor: pointer;
 }
 
 .publish {
@@ -64,5 +80,11 @@ textarea {
     .publish.btn{
         padding-left: 20px!important;
         padding-right: 20px!important;
+    }
+}
+
+@media screen and(max-width: 440px) {
+    .username{
+        display: block;
     }
 }
