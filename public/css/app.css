@@ -10910,6 +10910,18 @@ a.text-dark:focus {
   border-radius: 50%;
 }
 
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+
+.status {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-size: 15px;
+  line-height: 20px;
+  overflow-wrap: break-word;
+  font-weight: 400;
+}
+
 .time {
   font-size: 9px !important;
 }
@@ -10944,25 +10956,16 @@ a.text-dark:focus {
 }
 
 .publish:hover {
-  border-radius: 0px !important;
-  background: #1616e8 !important;
-  color: #fff;
-  cursor: pointer;
+  background: #1DA1F2 !important;
 }
 
 textarea {
-  /* margin:0px 0px; this is redundant anyways since its specified below*/
   padding-top: 10px;
   padding-bottom: 25px;
-  /* increased! */
-  /* height:16px; */
-  /* line-height:16px; */
   width: 100%;
-  /* changed from 96 to 100% */
   display: block;
   max-height: 288px !important;
   resize: none;
-  /* margin:0px auto; not needed since i have width 100% now */
 }
 
 @media screen and (max-width: 576px) {

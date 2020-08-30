@@ -20,3 +20,10 @@ function expandTextarea(id) {
 }
 
 expandTextarea('txtarea');
+
+$('#post-status').on('submit', function (e) {
+    e.preventDefault();
+    if ($('#txtarea').val().trim() !== ''){
+        this.submit();
+    }
+})

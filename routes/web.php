@@ -24,3 +24,4 @@ Route::PUT('/profile/info', 'ProfileController@updateInfo')->name('update_info')
 Route::PUT('/profile/password', 'ProfileController@updatePassword')->name('update_password');
 Route::get('/login/{provider}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{provider}/callback','Auth\LoginController@handleProviderCallback');
+Route::resource('post', 'Post\PostController');
