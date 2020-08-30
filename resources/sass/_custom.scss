@@ -3,3 +3,55 @@
     height: 40px;
     border-radius: 50%;
 }
+
+.time {
+    font-size: 9px !important
+}
+
+.socials i {
+    margin-right: 14px;
+    font-size: 17px;
+    color: #d2c8c8;
+    cursor: pointer
+}
+
+.feed-image img {
+    width: 100%;
+    height: auto
+}
+.share-input:focus {
+    outline: 0 !important;
+    box-shadow: none
+}
+
+.share-input {
+    outline: 0 !important;
+    box-shadow: none
+}
+
+.publish {
+    border-radius: 0px !important;
+    background: #1DA1F2!important;
+    color: #fff;
+    cursor: pointer
+}
+
+.publish:hover {
+    background: #1DA1F2!important;
+}
+
+textarea {
+    padding-top:10px;
+    padding-bottom:25px;
+    width:100%;
+    display:block;
+    max-height: 288px!important;
+    resize: none;
+}
+
+@media screen and(max-width: 576px) {
+    .publish.btn{
+        padding-left: 20px!important;
+        padding-right: 20px!important;
+    }
+}
