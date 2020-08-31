@@ -37286,46 +37286,47 @@ function expandTextarea(id) {
 }
 
 expandTextarea('txtarea');
-$('#post-status').on('submit', function (e) {
-  e.preventDefault();
-
-  if ($('#txtarea').val().trim() !== '') {
-    this.submit();
-  }
-});
+var selectedImages = new DataTransfer();
 
 function readURL(input) {
   if (input.files && input.files.length > 0) {
     var files = input.files;
 
-    for (var i = 0; i < files.length; i++) {
-      // Closure to capture the file information.
-      (function (file) {
-        var reader = new FileReader();
+    if (files.length <= 4 && selectedImages.files.length < 4) {
+      for (var i = 0; i < files.length; i++) {
+        // Closure to capture the file information.
+        (function (file) {
+          var reader = new FileReader();
 
-        reader.onload = function (e) {
-          // Render thumbnail.
-          var image = document.createElement('img');
-          image.src = e.target.result;
-          image["class"] = 'thumbnail';
-          document.getElementsByClassName('preview')[0].insertBefore(image, null);
-        }; // Read in the image file as a data URL.
+          reader.onload = function (e) {
+            // Render thumbnail.
+            var image = document.createElement('img');
+            image.src = e.target.result;
+            image.classList.add('thumbnail', 'p-1');
+            document.getElementsByClassName('preview')[0].insertBefore(image, null);
+          }; // Read in the image file as a data URL.
 
 
-        reader.readAsDataURL(file);
-      })(files[i]); // console.log(files.length)
-      // reader.onload = function(e) {
-      //     $('.preview').append(`<img src="${e.target.result}" />`);
-      // }
-      //
-      // reader.readAsDataURL(files[i]); // convert to base64 string
-
+          reader.readAsDataURL(file);
+          selectedImages.items.add(file);
+        })(files[i]);
+      }
+    } else {
+      alert('only 4 images are allowed');
     }
   }
 }
 
 $("#images").change(function () {
   readURL(this);
+});
+$('#post-status').on('submit', function (e) {
+  e.preventDefault();
+  $("#images").get(0).files = selectedImages.files;
+
+  if ($('#txtarea').val().trim() !== '' || $("#images").get(0).files.length > 0) {
+    this.submit();
+  }
 });
 
 /***/ }),

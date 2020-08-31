@@ -8,9 +8,10 @@
                     <div class="share border bg-white">
                         <div class="d-flex flex-row inputs p-2 pt-4">
                             <img class="rounded-circle" src="/uploads/{{Auth::user()->avatar}}" width="40" height="40">
-                            <form id="post-status" action="{{route('post.store')}}" method="POST" class="w-100">
+                            <form id="post-status" action="{{route('post.store')}}" method="POST" class="w-100" enctype="multipart/form-data">
                                 @csrf
                                 <textarea data-emojiable="true" class="form-control animated border-0 form-control share-input" name="text" id="txtarea" placeholder="Update your status"></textarea>
+                                <input type="file" id="images" accept="image/png, image/jpeg" class="d-none" name="images" multiple >
                                 <div class="row">
                                     <section class="preview column" id="preview">
 
@@ -21,12 +22,9 @@
                         <div class="d-flex flex-row justify-content-between border-top">
                             <div class="d-flex flex-row publish-options">
                                 <div class="align-items-center border-right p-2 share">
-                                    <form>
-                                        <input type="file" id="images" accept="image/png, image/jpeg" class="d-none" name="images" multiple >
-                                        <label for="images">
-                                            <i class="fa fa-camera text-black-50"></i><span class="ml-1 d-md-inline-block d-none">Photo</span>
-                                        </label>
-                                    </form>
+                                    <label for="images">
+                                        <i class="fa fa-camera text-black-50"></i><span class="ml-1 d-md-inline-block d-none">Photo</span>
+                                    </label>
                                 </div>
                                 <div class="align-items-center border-right p-2 share ">
                                     <i class="fa fa-video-camera text-black-50"></i><span class="ml-1 d-md-inline-block d-none">Video</span>

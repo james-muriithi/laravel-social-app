@@ -10986,20 +10986,15 @@ textarea {
 }
 
 .preview {
-  /* Prevent vertical gaps */
-  line-height: 0;
-  -webkit-column-count: 5;
-  -webkit-column-gap: 0px;
-  -moz-column-count: 5;
-  -moz-column-gap: 0px;
-  column-count: 5;
-  column-gap: 0px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .preview img {
   /* Just in case there are inline attributes */
   width: 100% !important;
   height: auto !important;
+  border-radius: 15px;
 }
 
 @media screen and (max-width: 576px) {

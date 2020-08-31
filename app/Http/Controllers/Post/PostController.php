@@ -23,15 +23,20 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'text' => 'required',
+            'text' => 'required_without:images',
+            'images.*' => 'mimes:png,jpeg,jpg|max:4|required_without:text'
         ]);
 
         $post = $request->all();
         $post['user_id'] = auth()->user()->id;
 
-        Post::create($post);
+        if ($request->hasFile('images')){
+            echo 'gg';
+        }
 
-        return back()->with(['success' => 'Your Post was posted successfully']);
+//        Post::create($post);
+//
+//        return back()->with(['success' => 'Your Post was posted successfully']);
     }
 
     /**
