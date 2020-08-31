@@ -5,13 +5,25 @@
         <div class="d-flex justify-content-center row">
             <div class="col-md-8 col-sm-12">
                 <div class="feed">
+                    @if ($errors->any())
+                        <div class="row">
+                            <div class="alert alert-danger mb-3 mx-auto">
+                                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    @endif
                     <div class="share border bg-white">
                         <div class="d-flex flex-row inputs p-2 pt-4">
                             <img class="rounded-circle" src="/uploads/{{Auth::user()->avatar}}" width="40" height="40">
                             <form id="post-status" action="{{route('post.store')}}" method="POST" class="w-100" enctype="multipart/form-data">
                                 @csrf
                                 <textarea data-emojiable="true" class="form-control animated border-0 form-control share-input" name="text" id="txtarea" placeholder="Update your status"></textarea>
-                                <input type="file" id="images" accept="image/png, image/jpeg" class="d-none" name="images" multiple >
+                                <input type="file" id="images" accept="image/png, image/jpeg" class="d-none" name="images[]" multiple >
                                 <div class="row">
                                     <section class="preview column" id="preview">
 
@@ -67,23 +79,19 @@
                                         {{$post->text}}
                                     </span>
                                 </div>
+                                @php($media = $post->media)
+                                @if(count($media) > 0)
+                                    <div class="feed-image p-2 px-3">
+                                    @foreach($media as $m)
+                                        <img class="img-fluid img-responsive px-1" src="/media/{{$m->file_name}}">
+                                    @endforeach
+                                    </div>
+                                @endif
                                 <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>
                             </div>
                         @endforeach
                     @endif
 
-{{--                    <div class="bg-white border mt-2">--}}
-{{--                        <div>--}}
-{{--                            <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">--}}
-{{--                                <div class="d-flex flex-row align-items-center feed-text px-2"><img class="rounded-circle" src="https://i.imgur.com/aoKusnD.jpg" width="45">--}}
-{{--                                    <div class="d-flex flex-column flex-wrap ml-2"><span class="font-weight-bold">Thomson ben</span><span class="text-black-50 time">40 minutes ago</span></div>--}}
-{{--                                </div>--}}
-{{--                                <div class="feed-icon px-2"><i class="fa fa-ellipsis-v text-black-50"></i></div>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                        <div class="feed-image p-2 px-3"><img class="img-fluid img-responsive" src="https://i.imgur.com/aoKusnD.jpg"></div>--}}
-{{--                        <div class="d-flex justify-content-end socials p-2 py-3"><i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i><i class="fa fa-share"></i></div>--}}
-{{--                    </div>--}}
                 </div>
             </div>
         </div>

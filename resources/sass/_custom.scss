@@ -38,9 +38,15 @@ a:hover{
     cursor: pointer
 }
 
+.feed-image{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: stretch;
+}
+
 .feed-image img {
     width: 100%;
-    height: auto
+    height: auto;
 }
 .share-input:focus {
     outline: 0 !important;

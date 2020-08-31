@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePostsTable extends Migration
+class CreateMediaEntitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('media_entities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('user_id');
-            $table->string('text')->nullable();
+            $table->integer('post_id');
+            $table->string('file_name');
+            $table->string('type');
+            $table->bigInteger('size');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_posts');
+        Schema::dropIfExists('media_entities');
     }
 }
