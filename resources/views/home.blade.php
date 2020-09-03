@@ -19,7 +19,7 @@
                     @endif
                     <div class="share border bg-white">
                         <div class="d-flex flex-row inputs p-2 pt-4">
-                            <img class="rounded-circle" src="/uploads/{{Auth::user()->avatar}}" width="40" height="40">
+                            <img class="rounded-circle" src="{{asset('/uploads/'.Auth::user()->avatar)}}" width="40" height="40">
                             <form id="post-status" action="{{route('post.store')}}" method="POST" class="w-100" enctype="multipart/form-data">
                                 @csrf
                                 <textarea data-emojiable="true" class="form-control animated border-0 form-control share-input" name="text" id="txtarea" placeholder="Update your status"></textarea>
@@ -62,7 +62,7 @@
                                 <div>
                                     <div class="d-flex flex-row justify-content-between align-items-center p-2 border-bottom">
                                         <div class="d-flex flex-row align-items-center feed-text px-2">
-                                            <img class="rounded-circle" src="/uploads/{{$user->avatar}}" alt="{{$user->name}}" width="45">
+                                            <img class="rounded-circle" src="{{asset('/uploads/'.$user->avatar)}}" alt="{{$user->name}}" width="45">
                                             <div class="d-flex flex-column flex-wrap ml-2">
                                                 <a href="#">
                                                     <span class="font-weight-bold text-capitalize">{{$user->name}}</span>
@@ -83,7 +83,7 @@
                                 @if(count($media) > 0)
                                     <div class="feed-image p-2 px-3">
                                     @foreach($media as $m)
-                                        <img class="img-fluid img-responsive px-1" src="/media/{{$m->file_name}}">
+                                        <img class="img-fluid img-responsive px-1" src="{{asset('/media/'.$m->file_name)}}">
                                     @endforeach
                                     </div>
                                 @endif
