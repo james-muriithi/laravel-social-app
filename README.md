@@ -1,4 +1,4 @@
-# Lara-twitter
+# Lara-social-app
 
 This is a simple web application build on top of the Laravel framework. Users can make posts and see other people posts.
 
